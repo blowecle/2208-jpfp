@@ -9,16 +9,19 @@ const syncAndSeed = async () => {
     await db.sync({ force: true });
 
     //use this area to sync your database
-
+  
     console.log(`
     Seeding successful!
   `);
 };
 
 
+Student.belongsTo(Campus)
 
 module.exports = {
     // Include your models in this exports object as well!
+    Campus,
+    Student,
     db,
     syncAndSeed,
 
