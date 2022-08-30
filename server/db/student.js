@@ -33,5 +33,8 @@ module.exports = db.define('student', {
             min: 1.0,
             max: 4.0
         }
+    },
+    campusId: {
+        type: Sequelize.INTEGER,
     }
 })

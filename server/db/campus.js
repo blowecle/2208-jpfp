@@ -28,4 +28,3 @@ module.exports = db.define('campus', {
         defaultValue: 'https://cityclub.imgix.net/files/blog/page/campus.jpg'
     }
 })
-
