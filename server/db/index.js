@@ -62,7 +62,6 @@ const students = [{
   gpa: 1.0,
   campusId: null
 },
-{}
 ]
 
 const campuses = [{

@@ -18,7 +18,7 @@ export const SingleStudent = () => {
     useEffect(() => {
         dispatch(getAllStudents());
         dispatch(getAllCampuses());
-    }, [dispatch])
+    }, [])
 
     console.log(student?.id, (campus != null)?campus.id:"unknown")
 
