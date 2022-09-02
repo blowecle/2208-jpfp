@@ -3,13 +3,11 @@ import axios from "axios";
 //action type constants
 const GET_ALL_STUDENTS = 'GET_ALL_STUDENTS';
 const GET_STUDENT = 'GET_STUDENT';
-// const SET_STUDENTS = 'SET_STUDENTS';
-// const SET_STUDENT = 'SET_STUDENT';
 const CREATE_STUDENT = 'CREATE_STUDENT';
 const DELETE_STUDENT = 'DELETE_STUDENT';
 const UPDATE_STUDENT = 'UPDATE_STUDENT';
 
-//action creators
+// action creators
 const _createStudent = (student) => {
     return {
         type: CREATE_STUDENT,
@@ -31,33 +29,21 @@ const _updateStudent = (student) => {
     }
 }
 
-export const _fetchStudents = () => {
+export const _fetchStudents = (students) => {
     return { 
         type: GET_ALL_STUDENTS, 
         students
     }
 }
 
-export const _fetchSingleStudent = () => {
+export const _fetchSingleStudent = (student) => {
     return { 
         type: GET_STUDENT, 
         student
     }
 }
 
-// export const fetchAllStudents = (students) => {
-//     return {
-//         type: SET_STUDENTS,
-//         students
-//     }
-// }
 
-// export const fetchStudent = (student) => {
-//     return {
-//         type: SET_STUDENT,
-//         student
-//     }
-// }
 
 //thunk creators
 export const getAllStudents = () => {
@@ -74,31 +60,32 @@ export const getStudent = (id) => {
     }
 }
 
-export const createStudent = (student, history) => {
+export const createStudent = (student, navigate) => {
     return async (dispatch) => {
         const { data: created } = await axios.post('/api/students', student);
         dispatch(_createStudent(created));
-        history.push('/')
+        navigate('/');
     }
 }
 
-export const deleteStudent = (student, history) => {
+export const deleteStudent = (student, navigate) => {
     return async (dispatch) => {
         const { data: deleted } = await axios.delete(`/api/students/${student.id}`);
         dispatch(_deleteStudent(deleted));
-        history.push('/');
+        navigate('/');
     }
 }
 
-export const editStudent = (student, history) => {
+export const editStudent = (student, navigate) => {
     return async (dispatch) => {
         const { data: edited } = await axios.put(`/api/students/${student.id}`, student);
         dispatch(_updateStudent(edited));
-        history.push('/');
+        navigate('/');
     }
 }
 
-export default function studentsReducer(state = [], action) {
+
+export default (state = [], action) => {
     switch(action.type) {
         case GET_ALL_STUDENTS:
             return action.students;

@@ -5,9 +5,11 @@ import campusesReducer from './campuses';
 import loggingMiddleware from 'redux-logger';
 
 const rootReducer = combineReducers({
-    studentReducer: studentsReducer,
-    campusReducer: campusesReducer
+    students: studentsReducer,
+    campuses: campusesReducer
 })
 
 
-export default createStore(rootReducer, applyMiddleware(thunk, loggingMiddleware));
+const store = createStore(rootReducer, applyMiddleware(thunk, loggingMiddleware));
+
+export default store;

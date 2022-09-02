@@ -37,7 +37,33 @@ const students = [{
   imgUrl: 'https://sm.ign.com/t/ign_ap/articlepage/f/funny-or-d/funny-or-die-gets-michael-bolton-to-recreate-micha_1yph.1280.jpg',
   gpa: 4.0,
   campusId: 2
-},]
+},
+{
+  firstName: 'Tom',
+  lastName: 'Smykowski',
+  email: 't.smykowski@initech.com',
+  imgUrl: 'https://i.pinimg.com/originals/d5/29/d7/d529d72e65adb201168e2e8a10d9e383.jpg',
+  gpa: 3.7,
+  campusId: 1
+},
+{
+  firstName: 'Samir',
+  lastName: 'Nagheenanajar',
+  email: 's.nagheenanajar@initech.com',
+  imgUrl: 'https://64.media.tumblr.com/4a0f787833228689cbec6cd578bfcb0f/tumblr_mfrj343AYO1s1kqrno1_1280.jpg',
+  gpa: 4.0,
+  campusId: 2
+},
+{
+  firstName: 'Bob',
+  lastName: 'Slydell',
+  email: 'bob.s@bobs.com',
+  imgUrl: 'https://pbs.twimg.com/profile_images/960941823937208320/OBCDL_f6_400x400.jpg',
+  gpa: 1.0,
+  campusId: null
+},
+{}
+]
 
 const campuses = [{
   name: 'Ohio State University',

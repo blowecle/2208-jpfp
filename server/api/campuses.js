@@ -39,4 +39,23 @@ router.get('/:id/students', async (req, res, next) => {
     }
 })
 
+router.delete('/:id', async (req, res, next) => {
+    try {
+            await Student.update({campusId: null}, {
+                where:{
+                    campusId: req.params.id,
+                }
+            })
+            await Campus.destroy({
+                where: {
+                    id: req.params.id,
+                }
+            })
+            res.sendStatus(200)
+    } catch (error) {
+        console.error('campuses.delete()', error)
+        next(error);
+    }
+})
+
 module.exports = router;
