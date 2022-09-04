@@ -25,6 +25,18 @@ router.get('/:id', async (req, res, next) => {
     }
 })
 
+//POST /api/students
+//create student using req.body
+router.post('/', async (req, res, next) => {
+    try {
+      res.status(201).send(await Student.create(req.body));
+    } catch (error) {
+      next(error);
+    }
+  });
+
+//DELETE /api/students/id
+//delete student where id: req.params.id
 router.delete('/:id', async (req, res, next) => {
     try {
         await Student.destroy({
@@ -38,4 +50,14 @@ router.delete('/:id', async (req, res, next) => {
     }
 })
 
+//PUT /api/students/:id
+//edit student where id: req.params.id
+router.put(`/:id`, async (req, res, next) => {
+    try {
+        const student = await Student.findByPk(req.params.id);
+        res.send(await student.update(req.body));
+    } catch(error){
+        next(error);
+    }
+})
 module.exports = router;

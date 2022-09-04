@@ -77,6 +77,7 @@ export const deleteStudent = (student, navigate) => {
 }
 
 export const editStudent = (student, navigate) => {
+    console.log(student)
     return async (dispatch) => {
         const { data: edited } = await axios.put(`/api/students/${student.id}`, student);
         dispatch(_updateStudent(edited));

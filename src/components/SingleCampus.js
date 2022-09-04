@@ -1,8 +1,8 @@
 //check, should be similar to SingleStudent
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch, shallowEqual } from 'react-redux'
-import { useParams, useNavigate } from 'react-router-dom'
-import { getAllStudents } from '../store/students'
+import { useParams, useNavigate, Link } from 'react-router-dom'
+import { getAllStudents, editStudent } from '../store/students'
 import { getAllCampuses, deleteCampus, editCampus } from '../store/campuses'
 
 export const SingleCampus = () => {
@@ -34,8 +34,6 @@ export const SingleCampus = () => {
             imgUrl: campus?.imgUrl,
         })
     }, [])
-
-    console.log("Single campus", campus, students)
     
     const handleDelete = (campus) => () => {
         if(campus){
@@ -57,6 +55,13 @@ export const SingleCampus = () => {
         dispatch(editCampus({...form, id: campus.id}, navigate));
       }
 
+    const unenrollStudent = (evt) => {
+        const student = students.find(student => student.id == evt.target.value)
+        student.campusId = null;
+        dispatch(editStudent({...student, id: evt.target.value}, navigate))
+    }
+    
+
 //check
     return (
         <div>
@@ -64,29 +69,41 @@ export const SingleCampus = () => {
                 <h1>{campus?.name}</h1>
                 <div>
                     <img src={campus?.imgUrl}/>
-                    <span>
-                    <form id='campus-form' onSubmit={handleEdit}>
-                        <label htmlFor='name'>Campus Name:</label>
-                        <input onChange={handleChange} name='name' value={form.name} />
-
-                        <label htmlFor='address'>Address:</label>
-                        <input onChange={handleChange} name='address' value={form.address} />
-
-                        <label htmlFor='description'>Description:</label>
-                        <input onChange={handleChange} name='description' value={form.description} />
-
-                        <label htmlFor='imgUrl'>Image URL:</label>
-                        <input onChange={handleChange} name='imgUrl' value={form.imgUrl} />
-
-                        <button type='submit'>Edit</button>
-                    </form>
-                    </span>
-                </div>
-                <p>{campus?.description}</p>
-            </div>
-            <div id="buttons">
-                <button onClick={handleDelete(campus)}>Delete Campus</button>
-            </div>
+                    </div>
+                        <p>{campus?.description}</p>
+                        <ul>Enrollees: 
+      {students.map((student) => {
+        return (
+          <li key={student.id}>
+            <h4>
+              <Link to={`/students/${student.id}`}>{student.firstName} {student.lastName}</Link>
+              <button value={student.id} onClick={unenrollStudent}>Unregister</button>
+            </h4>
+          </li>
+        );
+      })}
+        </ul>
         </div>
+        <span>
+            <form id='campus-form' onSubmit={handleSubmit}>
+                <label htmlFor='name'>Campus Name:</label>
+                <input onChange={handleChange} name='name' value={form.name} />
+
+                <label htmlFor='address'>Address:</label>
+                <input onChange={handleChange} name='address' value={form.address} />
+
+                <label htmlFor='description'>Description:</label>
+                <input onChange={handleChange} name='description' value={form.description} />
+
+                <label htmlFor='imgUrl'>Image URL:</label>
+                <input onChange={handleChange} name='imgUrl' value={form.imgUrl} />
+
+                <button type='submit'>Add new campus</button>
+            </form>
+        </span>
+        <div id="buttons">
+            <button onClick={handleDelete(campus)}>Delete Campus</button>
+        </div>
+    </div>
     )
 }

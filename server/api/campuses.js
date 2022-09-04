@@ -58,6 +58,18 @@ router.delete('/:id', async (req, res, next) => {
     }
 })
 
+//POST /api/campuses/
+//create campus using req.body
+router.post('/', async (req, res, next) => {
+    try {
+      res.status(201).send(await Student.create(req.body));
+    } catch (error) {
+      next(error);
+    }
+  });
+
+//PUT /api/campuses/:id
+//edit campus where id: req.params.id
 router.put(`/:id`, async (req, res, next) => {
     try {
         const campus = await Campus.findByPk(req.params.id);
