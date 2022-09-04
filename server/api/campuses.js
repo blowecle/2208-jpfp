@@ -62,8 +62,9 @@ router.delete('/:id', async (req, res, next) => {
 //create campus using req.body
 router.post('/', async (req, res, next) => {
     try {
-      res.status(201).send(await Student.create(req.body));
+      res.status(201).send(await Campus.create(req.body));
     } catch (error) {
+        console.error("POST /api/campuses", {error})
       next(error);
     }
   });

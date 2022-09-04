@@ -29,8 +29,13 @@ router.get('/:id', async (req, res, next) => {
 //create student using req.body
 router.post('/', async (req, res, next) => {
     try {
+      const student = req.body;
+      if(student.campusId == "") {
+          student.campusId = null;
+      }
       res.status(201).send(await Student.create(req.body));
     } catch (error) {
+      console.error("POST /api/students", {error})
       next(error);
     }
   });

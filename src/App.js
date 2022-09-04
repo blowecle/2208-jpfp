@@ -8,30 +8,28 @@ import { AllCampuses } from "./components/AllCampuses";
 import { SingleCampus } from "./components/SingleCampus"
 
 const App = () => {
-    // const students = useSelector(state => state.students);
-    // const campuses = useSelector(state => state.campuses);
-    // const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //     dispatch(getAllStudents());
-    //     dispatch(getAllCampuses());
-    // },[])
 
     return(
        <BrowserRouter>
            <div id='main'>
-               <h1>
-                   Student/College homepage
-               </h1>
-               <Link to='/students'>Students</Link>
-               <Link to='/campuses'>Campuses</Link>
-               <Routes>
-                    <Route path='/' />
-                    <Route path='/students' element={<AllStudents/>} />
-                    <Route path='/students/:id' element={<SingleStudent/>} />
-                    <Route path='/campuses' element={<AllCampuses/>} />
-                    <Route path='/campuses/:id' element={<SingleCampus/>} />
-                </Routes>
+               <header className="page-header">
+                    <div className="title-text"> Student/College homepage</div>
+                    <nav className="nav-bar">
+                        <ul className="nav-list">
+                            <li className="nav-list-item"><Link to='/students'>Students</Link></li>
+                            <li className="nav-list-item"><Link to='/campuses'>Campuses</Link></li>
+                        </ul>
+                    </nav>
+               </header>
+               <main className="main-content">
+                    <Routes>
+                        <Route path='/' />
+                        <Route path='/students' element={<AllStudents/>} />
+                        <Route path='/students/:id' element={<SingleStudent/>} />
+                        <Route path='/campuses' element={<AllCampuses/>} />
+                        <Route path='/campuses/:id' element={<SingleCampus/>} />
+                    </Routes>
+               </main>
            </div>
        </BrowserRouter>
     )

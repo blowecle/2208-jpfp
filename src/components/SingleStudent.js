@@ -96,11 +96,11 @@ export const SingleStudent = () => {
 
                         <label htmlFor='campusId'>Campus:</label>
                         <select onChange={handleChange} name="campusId" value={form.campusId}>
+                        <option key='null' value={null} name="campusId">-- Select --</option>
                             {campuses.map(campus => {
                                 return <option key={campus.id} value={campus.id} name="campusId">{campus.name}</option>
                             })}
                         </select> 
-                            {/* Why can I assign null campusId to uC but not to tOSU? */}
                         <button type='submit'>Edit</button>
                     </form>
                     </span>

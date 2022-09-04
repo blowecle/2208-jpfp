@@ -4,6 +4,21 @@ import { Link, useNavigate } from 'react-router-dom'
 import { getAllStudents, createStudent } from '../store/students'
 import { getAllCampuses } from '../store/campuses'
 
+export const StudentCard = ({student}) => (
+  <div className='card'>
+    <div className="card-title">
+      <Link to={`/students/${student.id}`}>{student.firstName} {student.lastName}</Link>
+    </div>
+    <img className="card-image" src={student.imgUrl}/>
+    <p>E-mail: {student.email}</p>
+    <p>GPA: {student.gpa}</p>
+  </div>
+)
+
+// export const AddNewStudentForm = () => {
+
+// }
+
 export const AllStudents = () => {
     const students = useSelector(store => store.students);
     const campuses = useSelector(state => state.campuses);
@@ -44,48 +59,48 @@ export const AllStudents = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    dispatch(createStudent({...form}, navigate));
+    dispatch(createStudent(form, navigate));
   }
 
   return (<>
-    <ul>
-      {students.map((student) => {
-        return (
-          <li key={student.id}>
-            <h2>
-              <Link to={`/students/${student.id}`}>{student.firstName} {student.lastName}</Link>
-            </h2>
-            <img src={student.imgUrl}/>
-            <p>E-mail: {student.email}</p>
-            <p>GPA: {student.gpa}</p>
-          </li>
-        );
-      })}
-    </ul>
-      <form id='student-form' onSubmit={handleSubmit}>
-          <label htmlFor='firstName'>First Name:</label>
-          <input onChange={handleChange} name='firstName' value={form.firstName} />
+  <div className="student-main">
+    <div className="card-list">
+      <ul className='list-style-none'>
+        {students.map((student) => {
+          return (
+            <li key={student.id}>
+              <StudentCard student={student}/>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+        <form id='student-form' onSubmit={handleSubmit}>
+            <label htmlFor='firstName'>First Name:</label>
+            <input onChange={handleChange} name='firstName' value={form.firstName} />
 
-          <label htmlFor='lastName'>Last Name:</label>
-          <input onChange={handleChange} name='lastName' value={form.lastName} />
+            <label htmlFor='lastName'>Last Name:</label>
+            <input onChange={handleChange} name='lastName' value={form.lastName} />
 
-          <label htmlFor='email'>Email:</label>
-          <input onChange={handleChange} name='email' value={form.email} />
+            <label htmlFor='email'>Email:</label>
+            <input onChange={handleChange} name='email' value={form.email} />
 
-          <label htmlFor='gpa'>Gpa:</label>
-          <input onChange={handleChange} name='gpa' value={form.gpa} />
+            <label htmlFor='gpa'>Gpa:</label>
+            <input onChange={handleChange} name='gpa' value={form.gpa} />
 
-          <label htmlFor='imgUrl'>Image URL:</label>
-          <input onChange={handleChange} name='imgUrl' value={form.imgUrl} />
+            <label htmlFor='imgUrl'>Image URL:</label>
+            <input onChange={handleChange} name='imgUrl' value={form.imgUrl} />
 
-          <label htmlFor='campusId'>Campus:</label>
-          <select onChange={handleChange} name="campusId" value={form.campusId}>
-              {campuses.map(campus => {
-                  return <option key={campus.id} value={campus.id} name="campusId">{campus.name}</option>
-              })}
-          </select> 
-          <button type='submit'>Add New Student</button>
-      </form>
+            <label htmlFor='campusId'>Campus:</label>
+            <select onChange={handleChange} name="campusId" value={form.campusId}>
+            <option key='null' value={null} name="campusId">-- Select --</option>
+                {campuses.map(campus => {
+                    return <option key={campus.id} value={campus.id} name="campusId">{campus.name}</option>
+                })}
+            </select> 
+            <button type='submit'>Add New Student</button>
+        </form>
+      </div>
     </>
   )
 }

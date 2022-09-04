@@ -1,0 +1,88 @@
+body {
+    font-size: 14px;
+}
+
+.title-text {
+    font-size: 2em;
+    font-weight: 700;
+}
+
+.nav-bar {
+
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-list-item {
+    margin: 0 2em
+}
+
+.page-header {
+    width: 100vw;
+    text-align: center;
+}
+
+.student-main {
+    display: flex;
+}
+
+.campus-main {
+    display: flex;
+}
+
+.card-list {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    position: relative;
+    max-width: 350px;
+    max-height: 600px;
+    border: 1px black solid;
+}
+
+.card-title {
+    font-weight: 600;
+    text-align: center;
+}
+
+.card-image {
+    max-width: 90%;
+    max-height: auto;
+}
+
+.list-style-none {
+    list-style: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+    margin: 1em;
+    max-width: 500px;
+  }
+  
+  input {
+    padding: 0.3em;
+    margin: 0.5em 0;
+    font-size: 1.5em;
+  }
+  
+  button {
+    color: white;
+    background-color: #59A9E9;
+  }
+  
+  button:hover {
+    background-color: #59A9C2;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+  }

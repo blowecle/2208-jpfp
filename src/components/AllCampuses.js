@@ -3,15 +3,23 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { getAllCampuses, createCampus } from '../store/campuses'
 
+export const CampusCard = ({campus}) => (
+  <div className='card'>
+    <div className='card-title'>
+      <Link to={`/campuses/${campus.id}`}>{campus.name}</Link>
+    </div>
+    <img className='card-image' src={campus.imgUrl}/>
+    <p>{campus.description}</p>
+  </div>
+)
+
 export const AllCampuses = () => {
     const campuses = useSelector(store => store.campuses);
     const [form, setForm]= useState({
-      firstName: "",
-      lastName: "",
-      email: "",
-      gpa: "",
+      name: "",
+      description: "",
+      address: "",
       imgUrl: "",
-      campusId: "",
   });
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -19,12 +27,10 @@ export const AllCampuses = () => {
     useEffect(() => {
         dispatch(getAllCampuses());
         setForm({
-          firstName: form.firstName,
-          lastName: form.lastName,
-          email: form.email,
-          gpa: form.gpa,
+          name: form.name,
+          description: form.description,
+          address: form.address,
           imgUrl: form.imgUrl,
-          campusId: form.campusId,
       })
     }, [])
 
@@ -38,24 +44,23 @@ export const AllCampuses = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    dispatch(createCampus({...form}, navigate));
+    dispatch(createCampus(form, navigate));
   }
 
   return (
   <>
-    <ul>
-      {campuses.map((campus) => {
-        return (
-          <li key={campus.id}>
-            <h2>
-              <Link to={`/campuses/${campus.id}`}>{campus.name}</Link>
-            </h2>
-            <img src={campus.imgUrl}/>
-            <p>{campus.description}</p>
-          </li>
-        );
-      })}
-    </ul>
+  <div className="campus-main">
+    <div className="card-list">
+      <ul className="list-style-none">
+        {campuses.map((campus) => {
+          return (
+            <li key={campus.id}>
+              <CampusCard campus={campus}/>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
     <span>
             <form id='campus-form' onSubmit={handleSubmit}>
                 <label htmlFor='name'>Campus Name:</label>
@@ -73,6 +78,7 @@ export const AllCampuses = () => {
                 <button type='submit'>Add new campus</button>
             </form>
         </span>
+      </div>
   </>
   )
 }
