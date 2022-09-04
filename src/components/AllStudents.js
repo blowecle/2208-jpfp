@@ -15,10 +15,6 @@ export const StudentCard = ({student}) => (
   </div>
 )
 
-// export const AddNewStudentForm = () => {
-
-// }
-
 export const AllStudents = () => {
     const students = useSelector(store => store.students);
     const campuses = useSelector(state => state.campuses);

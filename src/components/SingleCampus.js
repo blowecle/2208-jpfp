@@ -65,12 +65,12 @@ export const SingleCampus = () => {
 //check
     return (
         <div>
-            <div>
-                <h1>{campus?.name}</h1>
+            <div className='card'>
+                <div className='card-title'>{campus?.name}</div>
                 <div>
-                    <img src={campus?.imgUrl}/>
+                    <img className='card-image' src={campus?.imgUrl}/>
                     </div>
-                        <p>{campus?.description}</p>
+                        <div className='card-info'>{campus?.description}</div>
                         <ul>Enrollees: 
       {students.map((student) => {
         return (
@@ -82,28 +82,28 @@ export const SingleCampus = () => {
           </li>
         );
       })}
-        </ul>
+    </ul>
         </div>
         <span>
-            <form id='campus-form' onSubmit={handleSubmit}>
-                <label htmlFor='name'>Campus Name:</label>
-                <input onChange={handleChange} name='name' value={form.name} />
+        <form id='form' onSubmit={handleEdit}>
+            <label htmlFor='name'>Campus Name:</label>
+            <input onChange={handleChange} name='name' value={form.name} />
 
-                <label htmlFor='address'>Address:</label>
-                <input onChange={handleChange} name='address' value={form.address} />
+            <label htmlFor='address'>Address:</label>
+            <input onChange={handleChange} name='address' value={form.address} />
 
-                <label htmlFor='description'>Description:</label>
-                <input onChange={handleChange} name='description' value={form.description} />
+            <label htmlFor='description'>Description:</label>
+            <input onChange={handleChange} name='description' value={form.description} />
 
-                <label htmlFor='imgUrl'>Image URL:</label>
-                <input onChange={handleChange} name='imgUrl' value={form.imgUrl} />
+            <label htmlFor='imgUrl'>Image URL:</label>
+            <input onChange={handleChange} name='imgUrl' value={form.imgUrl} />
 
-                <button type='submit'>Add new campus</button>
-            </form>
+            <button type='submit'>Edit</button>
+        </form>
         </span>
-        <div id="buttons">
-            <button onClick={handleDelete(campus)}>Delete Campus</button>
+            <div id="buttons">
+                <button onClick={handleDelete(campus)}>Delete Campus</button>
+            </div>
         </div>
-    </div>
     )
 }

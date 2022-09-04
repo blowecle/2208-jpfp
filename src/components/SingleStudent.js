@@ -66,19 +66,23 @@ export const SingleStudent = () => {
         <div>
             {(student)?(
                 <div>
-                    <h1>{student.firstName} {student.lastName}</h1>
-                    <img src={student.imgUrl}></img>
-                    <h2>E-mail: {student.email}</h2>
-                    <h3>GPA: {student.gpa}</h3>
-                    {
-                        (campus && student.campusId)?(
-                            <Link to={`/campuses/${student.campusId}`}>
-                                <h4>Attends: {campus.name}</h4>
-                            </Link>
-                        ):"not assigned a campus"
-                    }
+                    <div className='card'>
+                        <div className='card-title'>{student.firstName} {student.lastName}</div>
+                        <img className='card-image' src={student.imgUrl}></img>
+                        <div className='card-info'>
+                            <div>E-mail: {student.email}</div>
+                            <div>GPA: {student.gpa}</div>
+                        </div>
+                        {
+                            (campus && student.campusId)?(
+                                <Link to={`/campuses/${student.campusId}`}>
+                                    <h4>Attends: {campus.name}</h4>
+                                </Link>
+                            ):"not assigned a campus"
+                        }
+                    </div>
                     <span>
-                    <form id='student-form' onSubmit={handleEdit}>
+                    <form id='form' onSubmit={handleEdit}>
                         <label htmlFor='firstName'>First Name:</label>
                         <input onChange={handleChange} name='firstName' value={form.firstName} />
 
