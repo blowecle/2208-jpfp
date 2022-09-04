@@ -1,6 +1,4 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllStudents } from "./store/students";
+import React from "react";
 import { BrowserRouter , Route, Link, Routes } from "react-router-dom";
 import { AllStudents } from "./components/AllStudents";
 import { SingleStudent } from "./components/SingleStudent";

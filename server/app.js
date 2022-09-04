@@ -3,7 +3,6 @@ const path = require('path')
 const cors = require('cors')
 const volleyball = require('volleyball')
 const app = express()
-const Student = require('./db/Student')
 
 // static middleware
 app.use(express.static(path.join(__dirname, '..','public')))
@@ -22,6 +21,7 @@ app.get("*", (req, res, next) => {
     res.sendFile(path.join(__dirname, "..", "public", "index.html"));
   });
 
+  //error handling
 app.use((err, req, res, next) => {
     res.status(err.status || 500).send({ message: err.message });
 });

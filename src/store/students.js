@@ -64,7 +64,7 @@ export const createStudent = (student, navigate) => {
     return async (dispatch) => {
         const { data: created } = await axios.post('/api/students', student);
         dispatch(_createStudent(created));
-        navigate('/');
+        navigate('/students');
     }
 }
 
@@ -72,16 +72,15 @@ export const deleteStudent = (student, navigate) => {
     return async (dispatch) => {
         const { data: deleted } = await axios.delete(`/api/students/${student.id}`);
         dispatch(_deleteStudent(deleted));
-        navigate('/');
+        navigate('/students');
     }
 }
 
-export const editStudent = (student, navigate) => {
+export const editStudent = (student) => {
     console.log(student)
     return async (dispatch) => {
         const { data: edited } = await axios.put(`/api/students/${student.id}`, student);
         dispatch(_updateStudent(edited));
-        navigate('/');
     }
 }
 

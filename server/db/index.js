@@ -1,11 +1,9 @@
-
-// The purpose of this module is to bring your Sequelize instance (`db`) together
-// with your models, for which you'll find some blank files in this directory:
-
-const db = require('./database')
 const Student = require('./student')
 const Campus = require('./campus')
+const db = require('./database')
 
+//creating data to seed the database
+//students seed
 const students = [{
   firstName: 'Bill',
   lastName: 'Lumbergh',
@@ -64,6 +62,7 @@ const students = [{
 },
 ]
 
+//campus seed
 const campuses = [{
   name: 'Ohio State University',
   address: ' 281 W Lane Ave, Columbus, OH 43210',
@@ -78,6 +77,7 @@ const campuses = [{
 },
 ]
 
+//seed function, resyncs database on server reset
 const seed = async () => {
   try {
     await db.sync({ force: true });
@@ -96,7 +96,7 @@ const seed = async () => {
   }
 }
 
-
+//syncs and seeds the database
 const syncAndSeed = async () => {
     await db.sync({ force: true });
     seed().catch(err => {
@@ -107,7 +107,7 @@ const syncAndSeed = async () => {
   `);
 };
 
-
+//1 to many relationship
 Student.belongsTo(Campus)
 Campus.hasMany(Student)
 

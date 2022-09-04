@@ -39,6 +39,8 @@ router.get('/:id/students', async (req, res, next) => {
     }
 })
 
+//DELETE /api/campuses/:id
+//delete campus where id: req.params.id
 router.delete('/:id', async (req, res, next) => {
     try {
             await Student.update({campusId: null}, {

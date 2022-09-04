@@ -44,7 +44,6 @@ export const _fetchSingleCampus = (campus) => {
     }
 }
 
-//check
 export const _fetchEnrollees = (students) => {
     return {
         type: GET_ENROLLEES,
@@ -68,7 +67,6 @@ export const getCampus = (id) => {
     }
 }
 
-//check
 export const getEnrollees = (id) => {
     return async (dispatch) => {
         const { data: students } = await axios.get(`/api/campuses/${id}/students`);
@@ -80,7 +78,7 @@ export const createCampus = (campus, navigate) => {
     return async (dispatch) => {
         const { data: created } = await axios.post('/api/campuses', campus);
         dispatch(_createCampus(created));
-        navigate('/');
+        navigate('/campuses');
     }
 }
 
@@ -88,7 +86,7 @@ export const deleteCampus = (campus, navigate) => {
     return async (dispatch) => {
         const { data: deleted } = await axios.delete(`/api/campuses/${campus.id}`);
         dispatch(_deleteCampus(deleted));
-        navigate('/');
+        navigate('/campuses');
     }
 }
 
@@ -96,7 +94,7 @@ export const editCampus = (campus, navigate) => {
     return async (dispatch) => {
         const { data: edited } = await axios.put(`/api/campuses/${campus.id}`, campus);
         dispatch(_updateCampus(edited));
-        navigate('/');
+        navigate(`/campuses/${campus.id}`);
     }
 }
 
@@ -107,7 +105,7 @@ export default (state = [], action) => {
         case GET_CAMPUS:
             return action.campus;
         case GET_ENROLLEES:
-            return action.students; //check
+            return action.students;
         case UPDATE_CAMPUS:
             return state.map((campus) =>
                 campus.id === action.campus.id ? action.campus : campus

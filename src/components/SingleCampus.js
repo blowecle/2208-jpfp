@@ -1,4 +1,3 @@
-//check, should be similar to SingleStudent
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 import { useParams, useNavigate, Link } from 'react-router-dom'
