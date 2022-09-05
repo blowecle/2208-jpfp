@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { getAllCampuses, createCampus } from '../store/campuses'
+import { getAllCampuses, createCampus, deleteCampus } from '../store/campuses'
 
 export const CampusCard = ({campus}) => (
   <div className='card'>
@@ -47,6 +47,12 @@ export const AllCampuses = () => {
     dispatch(createCampus(form, navigate));
   }
 
+  const handleDelete = (campus) => () => {
+    if(campus){
+        dispatch(deleteCampus(campus, navigate));
+    }
+  }
+
   return (
   <>
   <div className="campus-main">
@@ -56,6 +62,7 @@ export const AllCampuses = () => {
           return (
             <li key={campus.id}>
               <CampusCard campus={campus}/>
+              <button onClick={handleDelete(campus)}>X</button>
             </li>
           );
         })}

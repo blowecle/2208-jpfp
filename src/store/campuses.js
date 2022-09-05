@@ -86,7 +86,7 @@ export const deleteCampus = (campus, navigate) => {
     return async (dispatch) => {
         const { data: deleted } = await axios.delete(`/api/campuses/${campus.id}`);
         dispatch(_deleteCampus(deleted));
-        navigate('/campuses');
+        navigate('/');
     }
 }
 

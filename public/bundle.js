@@ -2620,6 +2620,14 @@ var AllCampuses = function AllCampuses() {
     dispatch((0,_store_campuses__WEBPACK_IMPORTED_MODULE_2__.createCampus)(form, navigate));
   };
 
+  var handleDelete = function handleDelete(campus) {
+    return function () {
+      if (campus) {
+        dispatch((0,_store_campuses__WEBPACK_IMPORTED_MODULE_2__.deleteCampus)(campus, navigate));
+      }
+    };
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "campus-main"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -2631,7 +2639,9 @@ var AllCampuses = function AllCampuses() {
       key: campus.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(CampusCard, {
       campus: campus
-    }));
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      onClick: handleDelete(campus)
+    }, "X"));
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
     id: "campus-form",
     onSubmit: handleSubmit
@@ -2766,6 +2776,14 @@ var AllStudents = function AllStudents() {
     dispatch((0,_store_students__WEBPACK_IMPORTED_MODULE_2__.createStudent)(form, navigate));
   };
 
+  var handleDelete = function handleDelete(student) {
+    return function () {
+      if (student) {
+        dispatch((0,_store_students__WEBPACK_IMPORTED_MODULE_2__.deleteStudent)(student, navigate));
+      }
+    };
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "student-main"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -2777,7 +2795,9 @@ var AllStudents = function AllStudents() {
       key: student.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(StudentCard, {
       student: student
-    }));
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      onClick: handleDelete(student)
+    }, "X"));
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
     id: "student-form",
     onSubmit: handleSubmit
@@ -3407,7 +3427,7 @@ var deleteCampus = function deleteCampus(campus, navigate) {
               _yield$axios$delete = _context5.sent;
               deleted = _yield$axios$delete.data;
               dispatch(_deleteCampus(deleted));
-              navigate('/campuses');
+              navigate('/');
 
             case 6:
             case "end":

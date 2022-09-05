@@ -23,16 +23,17 @@ module.exports = db.define('student', {
         allowNull: false,
         validate: {
             notEmpty: true,
+            isEmail: true,
         },
     },
     imgUrl: {
         type: Sequelize.STRING,
-        defaultValue: ''
+        defaultValue: 'default'
     },
     gpa: {
         type: Sequelize.FLOAT,
         validate: {
-            min: 1.0,
+            min: 0.0,
             max: 4.0
         }
     },
