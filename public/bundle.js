@@ -2624,6 +2624,7 @@ var AllCampuses = function AllCampuses() {
     return function () {
       if (campus) {
         dispatch((0,_store_campuses__WEBPACK_IMPORTED_MODULE_2__.deleteCampus)(campus, navigate));
+        window.location.reload(false);
       }
     };
   };
@@ -2780,6 +2781,7 @@ var AllStudents = function AllStudents() {
     return function () {
       if (student) {
         dispatch((0,_store_students__WEBPACK_IMPORTED_MODULE_2__.deleteStudent)(student, navigate));
+        window.location.reload(false);
       }
     };
   };

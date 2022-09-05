@@ -63,6 +63,7 @@ export const AllStudents = () => {
   const handleDelete = (student) => () => {
     if(student) {
         dispatch(deleteStudent(student, navigate))
+        window.location.reload(false);
     }
 }
 

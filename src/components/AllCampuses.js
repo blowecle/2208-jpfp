@@ -50,6 +50,7 @@ export const AllCampuses = () => {
   const handleDelete = (campus) => () => {
     if(campus){
         dispatch(deleteCampus(campus, navigate));
+        window.location.reload(false);
     }
   }
 
